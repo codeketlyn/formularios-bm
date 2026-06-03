@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitação de Orçamento</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    width:100%;
+    max-width:550px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-top:15px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:25px;
+    border:none;
+    background:#0b5ed7;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+button:hover{
+    opacity:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Solicitação de Orçamento</h2>
+
+    <label>Município</label>
+    <input type="text" id="municipio" placeholder="Digite o município">
+
+    <label>Nome do solicitante</label>
+    <input type="text" id="solicitante" placeholder="Digite seu nome">
+
+    <label>E-mail para resposta</label>
+    <input type="email" id="email" placeholder="Digite o e-mail para retorno">
+
+    <label>Quantidade de escolas municipais</label>
+    <input type="number" id="escolas" placeholder="Ex: 12">
+
+    <label>Quantidade de bibliotecas</label>
+    <input type="number" id="quantidade" placeholder="Ex: 5">
+
+    <button onclick="enviarEmail()">Solicitar Orçamento</button>
+
+</div>
+
+<script>
+
+function enviarEmail(){
+
+    const municipio = document.getElementById('municipio').value;
+    const solicitante = document.getElementById('solicitante').value;
+    const email = document.getElementById('email').value;
+    const escolas = document.getElementById('escolas').value;
+    const quantidade = document.getElementById('quantidade').value;
+
+    const assunto = encodeURIComponent('Solicitação de Orçamento - Brinquedoteca');
+
+    const corpo = encodeURIComponent(
+`Bom dia,
+
+O município ${municipio} solicita o orçamento de ${quantidade} da Brinquedoteca Incluir, Brincar e Educar Vale Mais, catálogo I113 para atender ${escolas} escolas da rede.
+
+Solicitante: ${solicitante}
+E-mail para resposta: ${email}
+
+Desde já, agradeço pela atenção.`
+    );
+
+    window.location.href = `mailto:atendimento@bmservicos.com.br?subject=${assunto}&body=${corpo}`;
+
+}
+
+</script>
+
+</body>
+</html>
